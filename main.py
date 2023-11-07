@@ -111,7 +111,7 @@ def render_images(
 
         # TODO (1.4): Visualize sample points as point cloud
         if cam_idx == 0 and file_prefix == '':
-            render_points('images/1.3_samples_pc.png', ray_bundle.sample_points.reshape(1, -1, 3),loop=0)
+            render_points('images/1.4_samples_pc.png', ray_bundle.sample_points.reshape(1, -1, 3))
 
         # TODO (1.5): Implement rendering in renderer.py
         out = model(ray_bundle)
@@ -152,7 +152,7 @@ def render(
     all_images = render_images(
         model, cameras, cfg.data.image_size
     )
-    imageio.mimsave('images/part_1.gif', [np.uint8(im * 255) for im in all_images],loop=0)
+    imageio.mimsave('images/part_1.gif', [np.uint8(im * 255) for im in all_images])
 
 
 def train(
@@ -215,7 +215,7 @@ def train(
             t_range.set_description(f'Epoch: {epoch:04d}, Loss: {loss:.06f}')
             t_range.refresh()
 
-    # Print center and side lengths
+    # Print center and side lengths after optimizing
     print("Box center:", tuple(np.array(model.implicit_fn.sdf.center.data.detach().cpu()).tolist()[0]))
     print("Box side lengths:", tuple(np.array(model.implicit_fn.sdf.side_lengths.data.detach().cpu()).tolist()[0]))
 
@@ -227,7 +227,7 @@ def train(
     all_images = render_images(
         model, create_surround_cameras(3.0, n_poses=20), image_size, file_prefix='part_2'
     )
-    imageio.mimsave('images/part_2.gif', [np.uint8(im * 255) for im in all_images],loop=0)
+    imageio.mimsave('images/part_2.gif', [np.uint8(im * 255) for im in all_images])
 
 
 def create_model(cfg):
@@ -363,7 +363,7 @@ def train_nerf(
                     model, create_surround_cameras(4.0, n_poses=20, up=(0.0, 0.0, 1.0), focal_length=2.0),
                     cfg.data.image_size, file_prefix='nerf'
                 )
-                imageio.mimsave('images/part_3.gif', [np.uint8(im * 255) for im in test_images],loop=0)
+                imageio.mimsave('images/part_3.gif', [np.uint8(im * 255) for im in test_images])
 
 
 @hydra.main(config_path='./configs', config_name='sphere')
