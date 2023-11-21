@@ -1,0 +1,204 @@
+<meta charset="utf-8" emacsmode="-*- markdown -*">
+
+**CMSC848f - Assignment 4**
+*Nishant Pandey-119247556*
+
+Classification Model 
+===============================================================================
+
+Test accuracy of the best model: 96.222
+
+* Visualization : 
+
+Successful Classifications:
+
+![Vase](report_images\random_vis_665_with_gt_1_pred_1.gif)
+
+![Chair](report_images\random_vis_474_with_gt_0_pred_0.gif)
+
+![Lamp](report_images\random_vis_852_with_gt_2_pred_2.gif)
+
+Failure Classifications:
+
+![Failure_1](report_images\fail_vis_770_with_gt_2_pred_1.gif)
+
+![Failure_2](report_images\fail_vis_859_with_gt_2_pred_1.gif)
+
+
+**Interpretation: **
+
+The classification model performance is overall good for most cases. These failure cases may be caused by the model being trained to 
+learn the spatial relationship rather than the semantic meanings of the characteristics of each object. 
+Thus it gets misleading and gives wrong results in some cases.
+One more finding is that we noticed the unbalanced testing/training data as chair class are much larger than the rest of the classes, 
+this may afftected our results as well.
+
+Segmentation Model
+===============================================================================
+
+Test accuracy of the best model: 
+
+* Visualization:
+
+*Successful:*
+
+![gt_1](report_images/random_vis_0_gt_exp_acc0.926.gif) ![pred_1](report_images/random_vis_0_pred_exp.gif)
+Accuracy = 92.6
+
+![gt_2](report_images/random_vis_1_gt_rotation_acc0.9613.gif) ![pred_2](report_images/random_vis_1_pred_rotation.gif)
+Accuracy = 96.13
+
+![gt_3](report_images/random_vis_594_gt_rotation_acc0.9506.gif) ![](report_images/random_vis_594_pred_rotation.gif)
+Accuracy = 95.06
+
+*Failure:*
+
+![gt_1](report_images/random_vis_576_gt_rotation_acc0.5912.gif) ![pred_1](report_images/random_vis_576_pred_rotation.gif)
+Accuracy = 59.12
+
+![get_2](report_images/random_vis_4_gt_rotation_acc0.6531.gif) ![pred_2](report_images/random_vis_4_pred_rotation.gif)
+Accuracy = 65.31
+
+**Interpretation: **
+
+The segmentation model performance is overall good for most cases. 
+Some bad cases are there because of large overlaps between different parts of chair/sofa, or not clearly seperated parts. 
+This increases the difficulty of the model to segment and identify the boundaries.
+
+Robustness Analysis
+===============================================================================
+
+**Experiment 1:**
+
+In this Experiment I rotate the point clouds by 10 degrees, 20 degrees, 30 degrees ,50 degrees , 90 degrees about the x-axis
+to compare the accuracy of the classification and segmentation outputs in each case.
+
+* Output for 10 degrees:
+
+*Classification: * 
+
+Test Accuracy:  79.11
+
+![Output_10 degrees](report_images/random_vis_794_with_gt_2_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 72.08
+
+![Gt_10 degrees](report_images/random_vis_389_gt_1_acc0.3424.gif) ![Pred_10 degrees](report_images/random_vis_389_pred_1.gif)
+
+* Output for 20 degrees:
+
+*Classification: * 
+
+Test Accuracy: 51.20
+
+![Output_20 degrees](report_images/fail_vis_68_with_gt_0_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 64.07
+
+![Gt_20 degrees](report_images/random_vis_181_gt_1_acc0.7549.gif) ![Pred_20 degrees](report_images/random_vis_181_pred_1.gif)
+
+* Output for 30 degrees:
+
+*Classification: * 
+
+Test Accuracy: 35.78
+
+![Output_30](report_images/random_vis_803_with_gt_2_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 59.95781199351702
+
+![Gt_30 degrees](report_images/random_vis_30_gt_1_acc0.5637.gif) ![Pred_30 degrees](report_images/random_vis_30_pred_1.gif)
+
+* Output for 50 degrees:
+
+*Classification: * 
+
+Test Accuracy: 26.96
+
+![Output_50](report_images/random_vis_738_with_gt_2_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 45.42
+
+![Gt_50 degrees](report_images/random_vis_266_gt_1_acc0.4911.gif) ![Pred_50 degrees](report_images/random_vis_266_pred_1.gif)
+
+* Output for 90 degrees:
+
+*Classification: 16.998950682056663* 
+
+Test Accuracy: 
+
+![Output_90](report_images/random_vis_881_with_gt_2_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 25.17
+
+![Gt_90 degrees](report_images/random_vis_107_gt_1_acc0.2212.gif) ![Pred_90 degrees](report_images/random_vis_107_pred_1.gif)
+
+**Interpretation: **
+
+The outputs show a clear decrease in accuracy as the degree of rotation increases. This could be due to the model obtained is not trained on such point clouds.
+
+**Experiment 2: **
+
+Input a different number of points (10000, 5000, 1000) points per object
+
+* Output for 10000 points
+*Classification: * 
+
+Test Accuracy: 96.22
+
+![Output_10000](report_images/random_vis_460_with_gt_0_pred_0.gif)
+
+*Segmentation: *
+
+Test Accuracy: 87.67
+
+![Gt_10000](report_images/random_vis_609_gt_0_acc0.9178.gif) ![Pred_10000](report_images/random_vis_609_pred_0.gif)
+
+* Output for 5000 points
+*Classification: * 
+
+Test Accuracy: 96.11
+
+![Output_5000](report_images/random_vis_808_with_gt_2_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 87.74
+
+![Gt_5000](report_images/random_vis_25_gt_0_acc0.9282.gif) ![Pred_5000](report_images/random_vis_25_pred_0.gif)
+
+* Output for 1000 points
+*Classification: * 
+
+Test Accuracy: 95.48793284365162
+
+![Output_1000](report_images/random_vis_942_with_gt_2_pred_2.gif)
+
+*Segmentation: *
+
+Test Accuracy: 87.89578606158833
+
+![Gt_1000](report_images/random_vis_483_gt_0_acc0.912.gif) ![Pred_1000](report_images/random_vis_483_pred_0.gif)
+
+
+**Interpretation: **
+
+The classification accuracy decreases with number of points per object as it reduces the number of data points that could be used to classify an object. 
+However for segmentation it is not so as the accuracy is calculated by points segmented correctly by total points as the points segmented correctly is almost the same 
+everytime and the total_points decreases drastically the accuracy increases with decrease in number of points this could be because sparse points are enough for making 
+segmentation boundaries atlease roughly.
+
+
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js?" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>
+
