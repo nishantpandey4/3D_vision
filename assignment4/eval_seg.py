@@ -94,4 +94,4 @@ if __name__ == '__main__':
         accuracy = correct_point / num_point
 
         viz_seg(verts, labels, "{}/random_vis_{}_gt_{}_acc{}.gif".format(args.output_dir, random_ind, args.exp_num, accuracy), args.device,args.num_points)
-        viz_seg(test_data[i], preds_labels[i], "{}/pred_{}.gif".format(args.output_dir, random_ind), args.device,args.num_points)
+        viz_seg(verts, preds_labels[random_ind], "{}/pred_{}.gif".format(args.output_dir, random_ind), args.device,args.num_points)
